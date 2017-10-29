@@ -22,6 +22,7 @@ router.get("/"+url+"*", function(req, res) {
         return
     }
     res.render(path.join(__dirname,"index.ejs"),{files:contents.file,address:address,addressArray:addressArray,url:config.URLPrecursors, path:path});
+    console.log(contents);
 });
 
 
