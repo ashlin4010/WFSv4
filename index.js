@@ -10,6 +10,8 @@ const download = require("./service/download.js");
 const videoPlayer = require("./service/videoPlayer/vp.js");
 const audioPlayer = require("./service/audioPlayer/audio.js");
 const image = require("./service/image/image.js");
+const upload = require("./service/upload.js");
+const pdf = require("./service/pdf.js");
 
 app.set('view engine', 'ejs'); //Set the view engine to ejs
 app.use(express.static(path.join(__dirname, 'public')));//Set path to static files for webPage stuff
@@ -19,6 +21,8 @@ app.use("/",download);
 app.use("/",videoPlayer);
 app.use("/",audioPlayer);
 app.use("/",image);
+app.use("/",upload);
+app.use("/",pdf);
 
 app.get("/",function (req, res) {
    res.redirect("/"+config.URLPrecursors.explorer);

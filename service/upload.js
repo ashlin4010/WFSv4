@@ -6,7 +6,8 @@ const fs = require('fs');
 
 const config = require.main.require("./lib/config.js");
 const url = config.URLPrecursors.upload;
-const homeDir = config.rootDir;
+const homeDir = config.server.rootDir;
+const logger = require.main.require("./lib/logger.js");
 
 router.post("/"+url+"*", function(req, res) {
 
@@ -19,14 +20,14 @@ router.post("/"+url+"*", function(req, res) {
     let busboy = new Busboy({ headers: req.headers });
 
     busboy.on('file', function(fieldname, file, filename, encoding) {
-        console.log('Upload started; filename: ' + filename + ', encoding: ' + encoding);
+        logger.log('Upload started; filename: ' + filename + ', encoding: ' + encoding);
 
         file.on('data', function(data) {
-            console.log('filename [' + filename + '] got ' + data.length + ' bytes');
+            logger.log('Filename [' + filename + '] got ' + data.length + ' bytes');
         });
 
         file.on('end', function() {
-            console.log('Upload ended; filename: ' + filename + ', encoding: ' + encoding);
+            logger.log('Upload ended; filename: ' + filename + ', encoding: ' + encoding);
         });
 
         if(filename){
