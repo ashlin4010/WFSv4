@@ -30,7 +30,6 @@ app.use("/",pdf);
 app.use("/",text);
 app.use("/",html);
 
-
 app.get("/",function (req, res) {
    res.redirect("/"+config.URLPrecursors.explorer);
 });
