@@ -43,8 +43,6 @@
             <% } %>
         </tr>
     </table>
-
-
     <table class="files">
         <tr class="header">
             <th>Name</th>
@@ -56,11 +54,11 @@
         <tr>
             <th style="text-align: left">
                 <i class="<%=files[i].fileIcon%>" aria-hidden="true"></i>
-                <a class="text" title="<%=("/"+path.join(url.explorer,address,files[i].name)).replace(/\\/g, "/")%>"
+                <a class="text" title="<%=(path.join(address,files[i].name)).replace(/\\/g, "/")%>"
                    href="<%=("/"+path.join(files[i].action,address,files[i].name)).replace(/\\/g, "/")%>"><%=files[i].name%></a>
             </th>
             <th>
-                <a href="<%=("/"+path.join(url.explorer,address,files[i].name)).replace(/\\/g, "/")%>">
+                <a href="<%=("/"+path.join(url.download,address,files[i].name)).replace(/\\/g, "/")%>">
                     <i class="icon-link-ext" aria-hidden="true"></i>
                 </a>
             </th>
