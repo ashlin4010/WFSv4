@@ -1,0 +1,9 @@
+{
+  "formats": [
+    {
+      "type": "video",
+      "extname": [".mp4"],
+      "icon": ""
+    }
+  ]
+}

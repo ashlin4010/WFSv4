@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const config = require("./lib/config.js");
 const logger = require("./lib/logger.js");
+const definitions = require("./lib/fileDefinition.js");
 const login = require("./service/login/login.js");
 const auth = require("./lib/authentication.js");
 
