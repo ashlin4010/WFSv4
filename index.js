@@ -51,16 +51,6 @@ app.get("/",function (req, res) {
     else res.redirect("/"+config.URLPrecursors.explorer);
 });
 
-app.get('/test', function (req, res, next) {
-    res.cookie('token', "stuff");
-    next();
-});
-
-app.get("/test",function (req, res) {
-    console.log(req.cookies);
-    res.send(req.cookies);
-});
-
 app.listen(config.server.port, function () {
     logger.log(`http://localhost:${config.server.port}/`);
 }); //Start the http server
