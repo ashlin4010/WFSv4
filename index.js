@@ -9,6 +9,8 @@ const logger = require("./lib/logger.js");
 const login = require("./service/login/login.js");
 const auth = require("./lib/authentication.js");
 
+const services = require("./lib/serviceLoader.js");
+
 const explorer = require("./service/explorer/explorer.js");
 const download = require("./service/download.js");
 const videoPlayer = require("./service/videoPlayer/vp.js");
@@ -23,7 +25,6 @@ let authentification = auth.pass;
 if(config.server.enableKey){
     authentification = auth.verify;
 }
-
 
 app.set('view engine', 'ejs'); //Set the view engine to ejs
 app.engine('html', require('ejs').renderFile);
