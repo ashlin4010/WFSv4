@@ -5,25 +5,25 @@ const path = require('path');
 const fs = require('fs');
 
 const config = require.main.require("./lib/config.js");
-const url = config.URLPrecursors.upload;
 const homeDir = config.server.rootDir;
 const logger = require.main.require("./lib/logger.js");
 
-router.post("/"+url+"*", function(req, res) {
+router.post("/*", function(req, res) {
 
     let address; //Address is the stuff after url in a array without "/" and url example http:/localhost/url/it/gets/this/stuff ==> ["it","gets","this","stuff"]
 
     //removes url string from url
-    address = decodeURI(req.path).substring(url.length+1);
+    address = decodeURI(req.path);
     if (address.endsWith("/")) address = address.slice(0, -1);
 
     let busboy = new Busboy({ headers: req.headers });
 
     busboy.on('file', function(fieldname, file, filename, encoding) {
+
         logger.log('Upload started; filename: ' + filename + ', encoding: ' + encoding);
 
         file.on('data', function(data) {
-            logger.log('Filename [' + filename + '] got ' + data.length + ' bytes');
+            logger.log('Data received; filename:' + filename + ', ' + data.length + ' bytes, encoding: ' + encoding);
         });
 
         file.on('end', function() {
@@ -32,6 +32,10 @@ router.post("/"+url+"*", function(req, res) {
 
         if(filename){
             let saveTo = path.join(homeDir,path.join(address, path.basename(filename)));
+            if(!fs.existsSync(path.join(homeDir,address))){
+                logger.error(`Root directory does not exist,'${saveTo}'`);
+                process.exit(1);
+            }
             file.pipe(fs.createWriteStream(saveTo));
         }
     });
@@ -40,8 +44,8 @@ router.post("/"+url+"*", function(req, res) {
         res.writeHead(303, { Connection: 'close', Location: req.get('referer') });
         res.end();
     });
-
     req.pipe(busboy);
+
 });//Handles file upload over post
 
 module.exports = router;

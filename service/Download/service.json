@@ -1,0 +1,12 @@
+{
+  "name":"Download",
+  "version": "1.0",
+  "author":"4010",
+  "description":"downloads stuff",
+  "definitions":"",
+  "formatsTypes":[],
+  "entryPoint":"./download.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"download",
+  "publicResources":""
+}

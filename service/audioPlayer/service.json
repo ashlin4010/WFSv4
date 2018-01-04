@@ -1,0 +1,12 @@
+{
+  "name":"audioPlayer",
+  "version": "1.0",
+  "author":"4010",
+  "description":"plays audio",
+  "definitions":"./def.json",
+  "formatsTypes":[{"type":"audio","single": true, "multiple": false}],
+  "entryPoint":"./audio.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"audio",
+  "publicResources":""
+}

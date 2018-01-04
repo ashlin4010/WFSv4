@@ -1,0 +1,12 @@
+{
+  "name":"",
+  "version": "",
+  "author":"",
+  "description":"",
+  "definitions":"./",
+  "formatsTypes":[{"type":"image","single": true, "multiple": false}],
+  "entryPoint":"./index.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"",
+  "publicResources":""
+}

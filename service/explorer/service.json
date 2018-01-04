@@ -1,0 +1,12 @@
+{
+  "name":"Explorer",
+  "version": "1.0",
+  "author":"4010",
+  "description":"Is a file explorer",
+  "definitions":"",
+  "formatsTypes":[],
+  "entryPoint":"./explorer.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"file",
+  "publicResources":"./public"
+}

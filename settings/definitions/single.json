@@ -1,5 +1,6 @@
 {
   "type": "test",
+  "defaultAction":"",
   "extname": [".mp43"],
   "icon": ""
 }

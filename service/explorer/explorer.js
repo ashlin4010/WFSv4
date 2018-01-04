@@ -6,9 +6,9 @@ const config = require.main.require("./lib/config.js");
 const url = config.URLPrecursors.explorer;
 const core = require.main.require("./lib/core.js");
 
-router.get("/"+url+"*", function(req, res) {
+router.get("/*", function(req, res) {
 
-    let address = decodeURI(req.path).substring(url.length + 1);//removes url "+1" because we have a "/"
+    let address = decodeURI(req.path);
     if (address.endsWith("/")) address = address.slice(0, -1);//so we can compear them to see if we need to reload the page
     let contents = core.contents(address);
     let addressO = address;

@@ -15,9 +15,10 @@
     makeDroppable(element, callback);
     function callback(files) {
 
-        console.log(files);
         var formData = new FormData();
-        formData.append("files", files[0]);
+        for(var i = 0; files.length > i; i++){
+            formData.append("files", files[i]);
+        }
 
         $.ajax({
             url: "/<%=(path.join(url.upload,addressArray.join("/"))).replace(/\\/g, "/")%>",
@@ -26,7 +27,7 @@
             processData: false,
             contentType: false,
             success: function(response) {
-                console.log("success on file up load")
+                location.reload();
             }
         })
     }
@@ -72,10 +73,9 @@
           id='uploadForm'
           method='post'
           encType="multipart/form-data">
-        <input type="file" name="sampleFile" />
-        <input type='submit' value='Upload!' />
+        <input type="file" name="sampleFile" multiple>
+        <input type='submit' value='Upload!'>
     </form>
-
 </div>
 </body>
 </html>

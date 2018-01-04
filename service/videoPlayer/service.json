@@ -1,0 +1,12 @@
+{
+  "name":"video",
+  "version": "1.0",
+  "author":"4010",
+  "description":"video player",
+  "definitions":"",
+  "formatsTypes":[{"type":"video","single": true, "multiple": false}],
+  "entryPoint":"./vp.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"video",
+  "publicResources":""
+}

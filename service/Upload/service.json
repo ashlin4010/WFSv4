@@ -1,0 +1,12 @@
+{
+  "name":"Upload",
+  "version": "1.0",
+  "author":"4010",
+  "description":"Uploads stuff",
+  "definitions":"",
+  "formatsTypes":[],
+  "entryPoint":"./upload.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"upload",
+  "publicResources":""
+}

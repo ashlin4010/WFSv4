@@ -19,7 +19,7 @@ function makeDroppable(element, callback) {
         e.stopPropagation();
         element.classList.remove('dragover');
     });
-    //
+
     element.addEventListener('drop', function(e) {
         e.preventDefault();
         e.stopPropagation();

@@ -2,59 +2,69 @@
   "formats": [
     {
       "type": "audio",
+      "defaultAction":"",
       "extname": [".wav", ".mp3", ".ogg", ".gsm", ".dct", ".flac", ".au", ".aiff", ".vox"],
       "icon": "icon-file-audio"
     },
     {
       "type": "powerpoint",
+      "defaultAction":"",
       "extname": [".pptx", ".pptm", ".ppt", ".xps", ".potx", ".potm", ",pot", ".thmx", ".pps", ".ppsx", ".ppsm", ".ppt", ".ppam", ".ppa"],
       "icon": "icon-file-powerpoint"
     },
     {
       "type": "pdf",
+      "defaultAction":"",
       "extname": [".pdf"],
       "icon": "icon-file-pdf"
     },
     {
       "type": "code",
+      "defaultAction":"",
       "extname": [".js", ".c", ".ejs", ".json", ".class", ".cmd", ".cpp", ".py"],
       "icon": "icon-file-code"
     },
     {
       "type": "archive",
+      "defaultAction":"",
       "extname": [".raw", ".zip", "iso", ".ARJ", ".TAR", ".GZ", ".TGZ"],
       "icon": "icon-file-archive"
     },
     {
       "type": "spreadsheet",
+      "defaultAction":"",
       "extname": [".gnumeric", ".ods", ".xls", ".xlsx", ".xlsm", ".xlsb", ".xlt", ".xml", ".xlam"],
       "icon": "icon-file-excel"
     },
     {
       "type": "text",
+      "defaultAction":"",
       "extname": [".txt", ".docx", ".docm", ".doc", ".dot", ".wbk", ".dotx", ".dotm", ".docb"],
       "icon": "icon-doc-text"
     },
     {
       "type": "video",
+      "defaultAction":"",
       "extname": [".webm", ".mkv", ".flv", ".vob", ".ogv", ".drc", ".mng", ".gifv", ".vai", ".mov", ".qt", ".wmv", ".yuv", ".rm", ".rmvb", ".asf", ".amv", ".mp4", ".m4p", ".m4v", ".mpg", ".mpeg", ".m2v", ".svi", ".3gp", ".svi", ".3g2", ".mxf", ".roq", ".nsv", ".flv", ".f4v", ".f4p", ".f4a", ".f4b"],
       "icon": "icon-file-video"
     },
     {
       "type": "image",
+      "defaultAction":"",
       "extname": [".JPG", ".tif", ".tiff", ".gif", ".jpeg", ".jpg", ".jif", ".jfif", ".jp2", ".jpx", ".j2k", ".j2c", ".fpx", ".pcd", ".png"],
       "icon": "icon-file-image"
     },
     {
       "type": "html",
+      "defaultAction":"",
       "extname": [".html"],
       "icon": "icon-chrome"
     },
     {
       "type": "executable",
+      "defaultAction":"",
       "extname": [".bat", ".sh", ".exe"],
       "icon": "icon-laptop"
     }
-
   ]
 }
