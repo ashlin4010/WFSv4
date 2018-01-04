@@ -4,7 +4,6 @@ const config = require.main.require("./lib/config.js");
 const path = require("path");
 
 router.get("/*",function (req, res) {
-    console.log("all good");
     let address = decodeURI(req.path);
     res.render(path.join(__dirname,"audio.ejs"), {address: `/${path.join(config.URLPrecursors.download,address)}`.replace(/\\/g, "/")});
 });
