@@ -6,13 +6,7 @@ const cookieParser = require('cookie-parser');
 
 const config = require("./lib/config.js");
 const logger = require("./lib/logger.js");
-const auth = require("./lib/authentication.js");
 const loader = require("./lib/loader.js");
-
-let authentification = auth.pass;
-if(config.server.enableKey){
-    authentification = auth.verify;
-}
 
 app.set('view engine', 'ejs'); //Set the view engine to ejs
 app.engine('html', require('ejs').renderFile);

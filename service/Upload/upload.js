@@ -22,9 +22,9 @@ router.post("/*", function(req, res) {
 
         logger.log('Upload started; filename: ' + filename + ', encoding: ' + encoding);
 
-        file.on('data', function(data) {
-            logger.log('Data received; filename:' + filename + ', ' + data.length + ' bytes, encoding: ' + encoding);
-        });
+        // file.on('data', function(data) {
+        //     logger.log('Data received; filename:' + filename + ', ' + data.length + ' bytes, encoding: ' + encoding);
+        // });
 
         file.on('end', function() {
             logger.log('Upload ended; filename: ' + filename + ', encoding: ' + encoding);

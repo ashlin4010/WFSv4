@@ -3,7 +3,7 @@
   "version": "1.0",
   "author":"4010",
   "description":"plays audio",
-  "definitions":"./def.json",
+  "definitions":"",
   "formatsTypes":[{"type":"audio","single": true, "multiple": false}],
   "entryPoint":"./audio.js",
   "requireAuthentication" : true,
