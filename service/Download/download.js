@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const core = require.main.require("./lib/core.js");
+const core = require("./../../lib/core.js");
 
 router.get("/*",function (req, res) {
     let address = decodeURI(req.path);

@@ -21,6 +21,6 @@ app.get("/",function (req, res) {
     res.redirect("/"+config.URLPrecursors.explorer);
 });
 
-app.listen(config.server.port, function () {
+app.listen(80, function () {
     logger.log("Starting server at "+`http://localhost:${config.server.port}/`);
 }); //Start the http server

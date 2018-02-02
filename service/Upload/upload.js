@@ -4,9 +4,9 @@ const Busboy = require('busboy');
 const path = require('path');
 const fs = require('fs');
 
-const config = require.main.require("./lib/config.js");
+const config = require("./../../lib/config.js");
 const homeDir = config.server.rootDir;
-const logger = require.main.require("./lib/logger.js");
+const logger = require("./../../lib/logger.js");
 
 router.post("/*", function(req, res) {
 

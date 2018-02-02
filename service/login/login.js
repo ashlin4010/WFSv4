@@ -1,8 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const auth = require.main.require("./lib/authentication.js");
+const auth = require("./../../lib/authentication.js");
 const path = require("path");
-
 
 router.get("/",function (req, res) {
     res.render(path.join(__dirname,"login.html"));

@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const config = require.main.require("./lib/config.js");
 const path = require("path");
+const config = require("./../../lib/config.js");
 
 router.get("/*",function (req, res) {
     let address = decodeURI(req.path);
