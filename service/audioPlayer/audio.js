@@ -3,13 +3,12 @@ const router = express.Router();
 const path = require("path");
 
 let services;
-if(process.pkg !== undefined){
-    services = require.cache[path.join(path.dirname(process.pkg.entrypoint),"\\lib\\loader.js")].exports.services;
-}
-else {
+if(process.pkg === undefined){
     services = require("./../../lib/loader.js").services;
 }
-
+else {
+    services = require(path.join(path.dirname(process.pkg.entrypoint),"\\lib\\loader.js")).services;
+}
 
 const servicesTools = require("./../../lib/servicesTools.js");
 const url = servicesTools.urlName(services);
