@@ -5,10 +5,8 @@
   "main": "index.js",
   "bin": "./index.js",
   "scripts": {
-    "start": "node ./index.js"
-  },
-  "pkg": {
-    "assets": ""
+    "start": "node ./index.js",
+    "compile": "pkg --public -t node9-win-x64 index.js"
   },
   "author": "",
   "license": "ISC",
@@ -21,5 +19,8 @@
     "express": "^4.16.2",
     "jsonwebtoken": "^8.1.0",
     "secure-random": "^1.1.1"
+  },
+  "devDependencies": {
+    "pkg": "^4.3.0"
   }
 }
