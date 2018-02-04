@@ -1,15 +1,9 @@
 const express = require('express');
 const router = express.Router();
-//const auth = require("./../../lib/authentication.js");
 const path = require("path");
 
-let auth;
-if(process.pkg !== undefined){
-    auth = require.cache[path.join(path.dirname(process.pkg.entrypoint),"\\lib\\authentication.js")].exports;
-}
-else {
-    auth = require("./../../lib/authentication.js");
-}
+const include = require("./../../lib/include.js");
+const auth = include.authentication;
 
 
 router.get("/",function (req, res) {

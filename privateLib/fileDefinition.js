@@ -1,7 +1,7 @@
 "use strict";
 const fs = require("fs");
 const path = require('path');
-const logger = require("./logger.js");
+const logger = require("./../lib/logger.js");
 
 function readAll(address) {
     const files = fs.readdirSync(address);
@@ -16,7 +16,6 @@ function readAll(address) {
 function read(address) {
     let definitions = [];
     if(path.extname(address) === ".json"){
-        //console.log(address);
         try{
             var json = require(address);
         }

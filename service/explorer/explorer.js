@@ -2,18 +2,13 @@ const express = require('express');
 const router = express.Router();
 const path = require("path");
 
-let services;
-if(process.pkg === undefined){
-    services = require("./../../lib/loader.js").services;
-}
-else {
-    services = require(path.join(path.dirname(process.pkg.entrypoint),"\\lib\\loader.js")).services;
-}
+const include = require("./../../lib/include.js");
+const services = include.loader.services;
+const servicesTools = include.servicesTools;
+const core = include.core;
 
-const servicesTools = require("./../../lib/servicesTools.js");
 const url = servicesTools.urlName(services);
 
-const core = require("./../../lib/core.js");
 router.get("/*", function(req, res) {
 
     let address = decodeURI(req.path);

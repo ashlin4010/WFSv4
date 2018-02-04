@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require('path');
-const config = require("./config");
-const logger = require("./logger.js");
+const logger = require("./../lib/logger.js");
 
 function readAll(address) {
 

@@ -1,8 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const fs = require("fs");
-const core = require("./../../lib/core.js");
-const logger = require("./../../lib/logger.js");
+
+const include = require("./../../lib/include.js");
+const core = include.core;
+const logger = include.loader;
+
 
 router.get("/*",function (req, res) {
     let address = decodeURI(req.path);
