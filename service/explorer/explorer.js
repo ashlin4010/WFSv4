@@ -2,13 +2,16 @@ const express = require('express');
 const router = express.Router();
 const path = require("path");
 
-const config = require.main.require("./lib/config.js");
-const url = config.URLPrecursors.explorer;
-const core = require.main.require("./lib/core.js");
+const include = require("./../../lib/include.js");
+const services = include.loader.services;
+const servicesTools = include.servicesTools;
+const core = include.core;
 
-router.get("/"+url+"*", function(req, res) {
+const url = servicesTools.urlName(services);
 
-    let address = decodeURI(req.path).substring(url.length + 1);//removes url "+1" because we have a "/"
+router.get("/*", function(req, res) {
+
+    let address = decodeURI(req.path);
     if (address.endsWith("/")) address = address.slice(0, -1);//so we can compear them to see if we need to reload the page
     let contents = core.contents(address);
     let addressO = address;
@@ -17,12 +20,11 @@ router.get("/"+url+"*", function(req, res) {
     if (addressArray[0] === "") addressArray.shift();
 
     if(path.normalize(contents.address) !== path.normalize(addressO)){
-        res.redirect(`/${path.normalize(path.join(url,address))}`.replace(/\\/g, "/")+"/");
+        res.redirect(`/${path.normalize(path.join(url.Explorer,address))}`.replace(/\\/g, "/")+"/");
         res.end();
         return
     }
-    res.render(path.join(__dirname,"index.ejs"),{files:contents.file,address:address,addressArray:addressArray,url:config.URLPrecursors, path:path});
+    res.render(path.join(__dirname,"index.ejs"),{files:contents.file,address:address,addressArray:addressArray,url:url, path:path});
 });
-
 
 module.exports = router;

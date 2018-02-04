@@ -1,0 +1,12 @@
+{
+  "name":"Default",
+  "version": "1.0",
+  "author":"4010",
+  "description":"default routes",
+  "definitions":"",
+  "formatsTypes":[],
+  "entryPoint":"./index.js",
+  "requireAuthentication" : false,
+  "URLPrecursors":"/",
+  "publicResources":""
+}

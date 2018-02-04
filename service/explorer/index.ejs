@@ -15,18 +15,19 @@
     makeDroppable(element, callback);
     function callback(files) {
 
-        console.log(files);
         var formData = new FormData();
-        formData.append("files", files[0]);
+        for(var i = 0; files.length > i; i++){
+            formData.append("files", files[i]);
+        }
 
         $.ajax({
-            url: "/<%=(path.join(url.upload,addressArray.join("/"))).replace(/\\/g, "/")%>",
+            url: "/<%=(path.join(url.Upload,addressArray.join("/"))).replace(/\\/g, "/")%>",
             method: 'post',
             data: formData,
             processData: false,
             contentType: false,
             success: function(response) {
-                console.log("success on file up load")
+                location.reload();
             }
         })
     }
@@ -34,10 +35,10 @@
 <div>
     <table class="addressBar">
         <tr>
-            <th><a style="text-decoration: none;" href="/<%=url.explorer%>">Root</a><i id="caret" class="icon-right-dir"></i></th>
+            <th><a style="text-decoration: none;" href="/<%=url.Explorer%>">Root</a><i id="caret" class="icon-right-dir"></i></th>
             <% for(var l=0; l < addressArray.length; l++) {%>
             <th>
-                <a style="text-decoration: none;" href="/<%=(path.join(url.explorer,addressArray.slice(0,l+1).join("/"))).replace(/\\/g, "/")%>/"><%=addressArray[l]%></a>
+                <a style="text-decoration: none;" href="/<%=(path.join(url.Explorer,addressArray.slice(0,l+1).join("/"))).replace(/\\/g, "/")%>/"><%=addressArray[l]%></a>
                 <i id="caret" class="icon-right-dir"></i>
             </th>
             <% } %>
@@ -58,7 +59,7 @@
                    href="<%=("/"+path.join(files[i].action,address,files[i].name)).replace(/\\/g, "/")%>"><%=files[i].name%></a>
             </th>
             <th>
-                <a href="<%=("/"+path.join(url.download,address,files[i].name)).replace(/\\/g, "/")%>">
+                <a href="<%=("/"+path.join(url.Download,address,files[i].name)).replace(/\\/g, "/")%>">
                     <i class="icon-link-ext" aria-hidden="true"></i>
                 </a>
             </th>
@@ -67,15 +68,14 @@
         </tr>
         <% } %>
     </table>
-    <form action="/<%=path.join(url.upload,address).replace(/\\/g, "/")%>"
+    <form action="/<%=path.join(url.Upload,address).replace(/\\/g, "/")%>"
           ref='uploadForm'
           id='uploadForm'
           method='post'
           encType="multipart/form-data">
-        <input type="file" name="sampleFile" />
-        <input type='submit' value='Upload!' />
+        <input type="file" name="sampleFile" multiple>
+        <input type='submit' value='Upload!'>
     </form>
-
 </div>
 </body>
 </html>

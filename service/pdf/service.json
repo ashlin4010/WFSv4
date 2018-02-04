@@ -1,0 +1,12 @@
+{
+  "name":"Pdf",
+  "version": "1.0",
+  "author":"4010",
+  "description":"pdf stuff",
+  "definitions":"",
+  "formatsTypes":[{"type":"pdf","single": true, "multiple": false}],
+  "entryPoint":"./pdf.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"pdf",
+  "publicResources":""
+}

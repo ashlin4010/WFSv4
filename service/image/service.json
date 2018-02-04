@@ -1,0 +1,12 @@
+{
+  "name":"Image",
+  "version": "1.0",
+  "author":"4010",
+  "description":"displays images",
+  "definitions":"",
+  "formatsTypes":[{"type":"image","single": true, "multiple": false}],
+  "entryPoint":"./image.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"",
+  "publicResources":""
+}

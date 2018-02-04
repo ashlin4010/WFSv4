@@ -1,0 +1,12 @@
+{
+  "name":"Html",
+  "version": "1.0",
+  "author":"4010",
+  "description":"renders html",
+  "definitions":"",
+  "formatsTypes":[{"type":"html","single": true, "multiple": false}],
+  "entryPoint":"./html.js",
+  "requireAuthentication" : true,
+  "URLPrecursors":"html",
+  "publicResources":""
+}
