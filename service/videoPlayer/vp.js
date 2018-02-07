@@ -10,7 +10,7 @@ const url = servicesTools.urlName(services);
 
 router.get("/*",function (req, res) {
     let address = decodeURI(req.path);
-    res.render(path.join(__dirname,"video.ejs"), {address: `/${path.join(url.Download,address)}`.replace(/\\/g, "/")});
+    res.render(path.join(__dirname,"video.ejs"), {address: `/${path.join(url.Download,address)}`.replace(/\\/g, "/"),title:address.replace("/", "")});
 });
 
 module.exports = router;

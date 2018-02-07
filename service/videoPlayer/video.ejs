@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title><%=title%></title>
     <style>
         body{
             background: #222222;
@@ -16,6 +16,14 @@
             margin-right: auto;
         }
     </style>
+    <script>
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: '<%=title%>',
+                artwork: [{src: null}]
+            });
+        }
+    </script>
 </head>
 <body>
 <video class="center" width="640" height="360" controls>
