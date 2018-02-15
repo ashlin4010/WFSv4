@@ -19,5 +19,11 @@ app.use(cookieParser());
 app.use("/",routes);
 
 app.listen(port, function () {
-    logger.log("Starting server at "+`http://localhost:${port}/`);
+    //logger.log("Starting server at "+`http://localhost:${port}/`+"or ");
+
+    require('dns').lookup(require('os').hostname(), function (err, add, fam) {
+        logger.log("Starting server at "+`http://localhost:${port}`+" or "+`http://${add}:${port}`);
+    })
+
+
 }); //Start the http server

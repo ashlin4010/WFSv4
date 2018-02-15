@@ -5,7 +5,7 @@ const path = require("path");
 
 const include = require("./../../lib/include.js");
 const core = include.core;
-const logger = include.core;
+const logger = include.logger;
 
 router.get("/*",function (req, res) {
     let address = decodeURI(req.path);
