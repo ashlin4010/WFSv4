@@ -27,11 +27,6 @@ function makeDroppable(element, callback) {
         triggerCallback(e);
     });
 
-    // element.addEventListener('click', function() {
-    //     input.value = null;
-    //     input.click();
-    // });
-
     function triggerCallback(e) {
         var files;
         if(e.dataTransfer) {

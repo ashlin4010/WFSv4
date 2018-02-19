@@ -5,8 +5,8 @@ const path = require('path');
 const fs = require('fs');
 
 const include = require("./../../lib/include.js");
-const config = include.config;
-const logger = include.logger;
+const {config} = include;
+const {logger} = include;
 
 const homeDir = config.server.rootDir;
 

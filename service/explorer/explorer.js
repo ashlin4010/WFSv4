@@ -3,9 +3,9 @@ const router = express.Router();
 const path = require("path");
 
 const include = require("./../../lib/include.js");
-const services = include.loader.services;
-const servicesTools = include.servicesTools;
-const core = include.core;
+const {services} = include.loader;
+const {servicesTools} = include;
+const {core} = include;
 
 const url = servicesTools.urlName(services);
 

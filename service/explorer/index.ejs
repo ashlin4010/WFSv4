@@ -10,28 +10,6 @@
 </head>
 <body>
 <div class="droppable" id="dropBox"></div>
-<script>
-    var element = document.querySelector('.droppable');
-    makeDroppable(element, callback);
-    function callback(files) {
-
-        var formData = new FormData();
-        for(var i = 0; files.length > i; i++){
-            formData.append("files", files[i]);
-        }
-
-        $.ajax({
-            url: "/<%=(path.join(url.Upload,addressArray.join("/"))).replace(/\\/g, "/")%>",
-            method: 'post',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                location.reload();
-            }
-        })
-    }
-</script>
 <div>
     <table class="addressBar">
         <tr>
@@ -68,14 +46,39 @@
         </tr>
         <% } %>
     </table>
-    <form action="/<%=path.join(url.Upload,address).replace(/\\/g, "/")%>"
-          ref='uploadForm'
-          id='uploadForm'
-          method='post'
-          encType="multipart/form-data">
-        <input type="file" name="sampleFile" multiple>
-        <input type='submit' value='Upload!'>
-    </form>
+    <input class="uploadField" type="file" name="upload" multiple>
+    <button onclick="upload(uploadFieldFile)">Upload!</button>
+    <script>
+        let uploadField = document.querySelector('.uploadField');
+        let uploadFieldFile;
+        uploadField.addEventListener('change', function (e) {
+            if(e.dataTransfer) {
+                uploadFieldFile = e.dataTransfer.files;
+            } else if(e.target) {
+                uploadFieldFile = e.target.files;
+            }
+        });
+
+        let droppable = document.querySelector('.droppable');
+        makeDroppable(droppable, upload);
+
+        function upload(files) {
+            let formData = new FormData();
+            for (let i = 0; files.length > i; i++) {
+                formData.append("files", files[i]);
+            }
+            $.ajax({
+                url: "/<%= (path.join(url.Upload, addressArray.join("/"))).replace(/\\/g, "/") %>",
+                method: 'post',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (response) {
+                    location.reload();
+                }
+            })
+        }
+    </script>
 </div>
 </body>
 </html>

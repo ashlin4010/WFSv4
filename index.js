@@ -25,5 +25,4 @@ app.listen(port, function () {
         logger.log("Starting server at "+`http://localhost:${port}`+" or "+`http://${add}:${port}`);
     })
 
-
 }); //Start the http server
