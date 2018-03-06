@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title><%=title%></title>
     <style>
         body{
@@ -10,8 +9,8 @@
             margin: 0;
         }
         .center {
-            display: block;
             margin-top: 10%;
+            display: block;
             margin-left: auto;
             margin-right: auto;
         }
@@ -25,8 +24,107 @@
     </script>
 </head>
 <body>
-<audio class="center" controls>
-    <source src="<%=address%>">
-</audio>
+<canvas class="center" id="visualiser" width="400" height="400"></canvas>
+<audio class="center" controls src="<%=address%>" id="audio"></audio>
+
+
+<script>
+    let barCount = 32; //Total display bars for the circle
+    let fftCount = 128; //Size of fft array thingy
+
+    //Random math I had to declare because JS math doesnt have it built in because its dumb
+    Math.radians = function(degrees) {
+        return degrees * Math.PI / 180;
+    };
+
+    Math.degrees = function(radians) {
+        return radians * 180 / Math.PI;
+    };
+
+    window.AudioContext = window.AudioContext || window.webkitAudioContext; //Create thing that manages all audio
+    context = new AudioContext();
+    anal = context.createAnalyser(); //Create fast foore' er transforma'
+    anal.fftSize = fftCount;
+    anal.connect(context.destination); //Connect the output of anal to the ears of our user
+
+    console.log("loaded");
+    let src = context.createMediaElementSource(document.getElementById("audio"));
+    src.connect(anal);
+
+    //Graphicals
+    let canvas = document.getElementById("visualiser");
+
+    // canvas.width  = window.innerWidth;
+    // canvas.height = window.innerHeight;
+
+    let graphics = document.getElementById("visualiser").getContext("2d");
+
+    let fftArray = new Float32Array(anal.frequencyBinCount); //Create array to hold fft data
+
+    let lol = 0;
+    function loop() {
+        lol = lol + 0.2;
+        requestAnimationFrame(loop); //Loop around for next frame or some GARBage
+
+        graphics.fillStyle = "#222222"; //Set color to grey
+        graphics.fillRect(0, 0, 400, 400); //Clear the screen
+
+        //Offset lol by 0, 120, 240 degrees for gay rainbow
+        graphics.fillStyle = "rgb(" + Math.floor((Math.sin(lol / 3) / 2 + 0.5) * 255) + "," + Math.floor((Math.sin(lol / 3 + Math.radians(120)) / 2 + 0.5) * 255) + "," + Math.floor((Math.sin(lol / 3 + Math.radians(240)) / 2 + 0.5) * 255) + ")";
+
+        //Obtain fft data and plonk it in the array
+        anal.getFloatFrequencyData(fftArray);
+
+        //Draw the bars
+        for(let i = 0; i < barCount; i++) {
+            let angle = Math.radians(360 / barCount * i); //Beginning angel of where to start drawing
+            let angleSize = Math.radians(7); //Bar size demon
+            let startDistance = -10;
+
+            let endDistance = (((fftArray[i] + 100))*2)*(i/30+1); //Set the size of the bar to the fft value
+            //Don't be negative
+            if(endDistance < 0) endDistance = 0;
+
+            //Draw the bar
+            graphics.beginPath();
+            let x = Math.cos(angle) * startDistance + 200;
+            let y = Math.sin(angle) * startDistance + 200;
+            graphics.moveTo(x, y);
+
+            x = Math.cos(angle + angleSize) * endDistance + 200;
+            y = Math.sin(angle + angleSize) * endDistance + 200;
+            graphics.lineTo(x, y);
+
+            x = Math.cos(angle) * endDistance + 200;
+            y = Math.sin(angle) * endDistance + 200;
+            graphics.lineTo(x, y);
+
+            x = Math.cos(angle + angleSize) * startDistance + 200;
+            y = Math.sin(angle + angleSize) * startDistance + 200;
+            graphics.lineTo(x, y);
+
+            x = Math.cos(angle) * startDistance + 200;
+            y = Math.sin(angle) * startDistance + 200;
+            graphics.lineTo(x, y);
+            graphics.fill();
+        }
+
+        //Draw the bars
+        // let sizeX = (canvas.width / fftCount * 2);
+        // for(let i = 0; i < fftCount / 2; i++) {
+        // 	let x = i * (canvas.width / fftCount * 2) + 1;
+        // 	let sizeY = (fftArray[i] + 100) * 1.5;
+        // 	let y = canvas.height - sizeY;
+        // 	graphics.fillRect(x, y, sizeX, sizeY);
+        // }
+
+        //Draw the center circle
+        graphics.fillStyle = "#222222";
+        graphics.beginPath();
+        graphics.arc(200, 200, 60, 0, 2 * Math.PI);
+        graphics.fill();
+    }
+    loop();
+</script>
 </body>
 </html>
