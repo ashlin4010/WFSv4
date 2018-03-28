@@ -1,18 +1,17 @@
-const express = require('express');
+const include = require("./../../lib/include.js");
+const {express,authentication} = include;
 const router = express.Router();
 const path = require("path");
-
-const include = require("./../../lib/include.js");
-const auth = include.authentication;
 
 
 router.get("/",function (req, res) {
     res.render(path.join(__dirname,"login.html"));
 });
 
+
 router.post("/",function (req, res) {
-    if(auth.auth(req.body.key)){
-        res.cookie('token', auth.genToken());
+    if(authentication.auth(req.body.key)){
+        res.cookie('token', authentication.genToken());
         res.redirect("/file");
     }
     else {

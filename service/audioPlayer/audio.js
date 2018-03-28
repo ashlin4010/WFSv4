@@ -1,10 +1,8 @@
-const express = require('express');
+const include = require("./../../lib/include.js");
+const {servicesTools,express} = include;
 const router = express.Router();
 const path = require("path");
-
-const include = require("./../../lib/include.js");
 const {services} = include.loader;
-const {servicesTools} = include;
 
 const url = servicesTools.urlName(services);
 

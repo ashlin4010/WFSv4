@@ -1,10 +1,7 @@
-const express = require('express');
+const include = require("./../../lib/include.js");
+const {express,core,logger} = include;
 const router = express.Router();
 const fs = require("fs");
-
-const include = require("./../../lib/include.js");
-const {core} = include;
-const {logger} = include;
 
 
 router.get("/*",function (req, res) {

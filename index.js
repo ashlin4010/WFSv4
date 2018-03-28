@@ -1,13 +1,13 @@
 "use strict";
-const express = require('express');
-const app = express();
-const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser');
 
 const include = require("./lib/include.js");
 const port = include.config.server.port;
-const logger = include.logger;
 const routes = include.loader.loadRoutes();
+const {logger,express} = include;
+
+const app = express();
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 
 app.set('view engine', 'ejs'); //Set the view engine to ejs
 app.engine('html', require('ejs').renderFile);
@@ -18,9 +18,8 @@ app.use(cookieParser());
 
 app.use("/",routes);
 
-app.listen(port, function () {
-    //logger.log("Starting server at "+`http://localhost:${port}/`+"or ");
 
+app.listen(port, function () {
     require('dns').lookup(require('os').hostname(), function (err, add, fam) {
         logger.log("Starting server at "+`http://localhost:${port}`+" or "+`http://${add}:${port}`);
     })
