@@ -32,6 +32,7 @@
         <% for(var i=0; i < files.length; i++) {%>
         <tr>
             <th style="text-align: left">
+                <a><%=i.toString().padStart(3, "0")%></a>
                 <i class="<%=files[i].fileIcon%>" aria-hidden="true"></i>
                 <a class="text" title="<%=(path.join(address,files[i].name)).replace(/\\/g, "/")%>"
                    href="<%=("/"+path.join(files[i].action,address,files[i].name)).replace(/\\/g, "/")%>"><%=files[i].name%></a>
