@@ -49,7 +49,9 @@
     </table>
     <input class="uploadField" type="file" name="upload" multiple>
     <button onclick="upload(uploadFieldFile)">Upload!</button>
+    <progress id="progress" value="0" max="100"></progress>
     <script>
+        let progressBar = document.getElementById("progress")
         let uploadField = document.querySelector('.uploadField');
         let uploadFieldFile;
         uploadField.addEventListener('change', function (e) {
@@ -69,15 +71,27 @@
                 formData.append("files", files[i]);
             }
             $.ajax({
+                xhr: function() {
+                    let xhr = new window.XMLHttpRequest();
+                    xhr.upload.addEventListener("progress", function(evt) {
+                        if (evt.lengthComputable) {
+                            let percentComplete = (evt.loaded / evt.total) * 100;
+                            progressBar.value = Math.ceil(percentComplete);
+                        }
+                    }, false);
+
+                    return xhr;
+                },
                 url: "/<%= (path.join(url.Upload, addressArray.join("/"))).replace(/\\/g, "/") %>",
                 method: 'post',
                 data: formData,
                 processData: false,
                 contentType: false,
-                success: function (response) {
+
+                success: function(){
                     location.reload();
                 }
-            })
+            });
         }
     </script>
 </div>

@@ -21,7 +21,7 @@ function read(address) {
         }
         catch (e){
             console.log(e);
-            logger.error("Invalid json: "+path.parse(address).base);
+            logger.error("Invalid json: "+ path.parse(address).base);
             return definitions;
         }
         if(json.formats){
@@ -30,7 +30,7 @@ function read(address) {
         }
         return [json];
     }
-    logger.warn("Unable to find json in "+address);
+    logger.warn("Unable to find json in "+ address);
     return [];
 }
 

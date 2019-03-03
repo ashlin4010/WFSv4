@@ -1,7 +1,8 @@
+Send/*
+!Send/Placeholder.txt
 .idea
 node_modules
 /config.json
-Send
 Logs
 /settings/config.json
 index.exe
