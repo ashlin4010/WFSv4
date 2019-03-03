@@ -6,7 +6,7 @@
   "bin": "./index.js",
   "scripts": {
     "start": "node ./index.js",
-    "compile": "pkg --public -t node9-win-x64 index.js"
+    "compile": "pkg --public -t latest-win-x64 index.js"
   },
   "author": "",
   "license": "ISC",
