@@ -13,11 +13,14 @@
 <div>
     <table class="addressBar">
         <tr>
-            <th><a style="text-decoration: none;" href="/<%=url.Explorer%>">Root</a><i id="caret" class="icon-right-dir"></i></th>
+            <th><a style="text-decoration: none;" href="/<%=url.Explorer%>">Root<i id="caret" class="icon-right-dir"></i></th></a>
+
+
             <% for(var l=0; l < addressArray.length; l++) {%>
             <th>
-                <a style="text-decoration: none;" href="/<%=(path.join(url.Explorer,addressArray.slice(0,l+1).join("/"))).replace(/\\/g, "/")%>/"><%=addressArray[l]%></a>
+                <a style="text-decoration: none;" href="/<%=(path.join(url.Explorer,addressArray.slice(0,l+1).join("/"))).replace(/\\/g, "/")%>/"><%=addressArray[l]%>
                 <i id="caret" class="icon-right-dir"></i>
+                </a>
             </th>
             <% } %>
         </tr>
@@ -28,6 +31,7 @@
             <th>Download</th>
             <th>Date Modified</th>
             <th id="size">Size</th>
+            <th>Delete</th>
         </tr>
         <% for(var i=0; i < files.length; i++) {%>
         <tr>
@@ -37,16 +41,32 @@
                 <a class="text" title="<%=(path.join(address,files[i].name)).replace(/\\/g, "/")%>"
                    href="<%=("/"+path.join(files[i].action,address,files[i].name)).replace(/\\/g, "/")%>"><%=files[i].name%></a>
             </th>
+
             <th>
                 <a href="<%=("/"+path.join(url.Download,address,files[i].name)).replace(/\\/g, "/")%>">
                     <i class="icon-link-ext" aria-hidden="true"></i>
                 </a>
             </th>
+
             <th><%=files[i].dateModified%></th>
+
             <th style="text-align: right"><%=files[i].size%></th>
+
+            <th>
+                <button onclick="httpGet('<%=("/"+path.join(url.Delete, address, files[i].name)).replace(/\\/g, "/")%>')">
+                    <b style="color: #b2174e">X</b>
+                </button>
+            </th>
+
+
         </tr>
         <% } %>
     </table>
+
+    <br>
+    <br>
+
+
     <input class="uploadField" type="file" name="upload" multiple>
     <button onclick="upload(uploadFieldFile)">Upload!</button>
     <progress id="progress" value="0" max="100"></progress>
@@ -92,6 +112,15 @@
                     location.reload();
                 }
             });
+        }
+
+        function httpGet(url) {
+            const Http = new XMLHttpRequest();
+            Http.open("GET", url);
+            Http.send();
+            Http.onreadystatechange= (e) => {
+                location.reload();
+            }
         }
     </script>
 </div>
