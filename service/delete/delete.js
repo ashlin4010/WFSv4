@@ -27,8 +27,10 @@ router.get("/*",function (req, res) {
         try {
             if(fs.lstatSync(address).isDirectory()){
                 deleteFolderRecursive(address);
+                logger.log("Folder deleted: " + address);
             }
             else {
+                logger.log("File deleted: " + address);
                 fs.unlinkSync(address);
             }
         }
@@ -38,7 +40,7 @@ router.get("/*",function (req, res) {
         }
     }
 
-    res.reload();
+    res.redirect(req.get('referer'));
 });
 
 module.exports = router;
